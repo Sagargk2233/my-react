@@ -45,19 +45,6 @@ pipeline {
         }
       }
     }
-     stage('Terminate Server') {
-      steps {
-        echo 'Terminating the server...'
-        script {
-          powershell '''
-          # Read the server PID and kill the process
-          $pid = Get-Content server.pid
-          Stop-Process -Id $pid -Force
-          Remove-Item server.pid
-          '''
-        }
-      }
-    }
     stage('Open in Chrome') {
       steps {
         echo 'Opening the application in Chrome...'
