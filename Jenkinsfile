@@ -41,5 +41,13 @@ pipeline {
         }
       }
     }
+    stage('Open in Chrome') {
+      steps {
+        echo 'Opening the application in Chrome...'
+        script {
+          bat 'start chrome http://localhost:8070'
+        }
+      }
+    }
   }
 }
