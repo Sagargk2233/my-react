@@ -39,7 +39,7 @@ pipeline {
             echo 'Serving the application locally...'
             powershell '''
           # Start the HTTPS server in the background
-          Start-Process -FilePath "cmd.exe" -ArgumentList "/c serve -s build -l 8443 --ssl" -PassThru | Select-Object -ExpandProperty Id > server.pid
+          Start-Process -FilePath "cmd.exe" -ArgumentList "/c serve -s build -l 8070 --ssl" -PassThru | Select-Object -ExpandProperty Id > server.pid
           '''
           sleep(time: 2, unit: 'MINUTES')
         }
