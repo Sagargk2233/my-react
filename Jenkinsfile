@@ -36,8 +36,8 @@ pipeline {
       steps {
         echo 'Deploying to Local...'
         script {
-            def deployDir = 'C:\\My PC\\MCA-SEM-4\\NewReactProject\\Deployments\\portfolio'
-            bat "start cmd.exe /c http-server \"${deployDir}\" -p 8070"
+            echo 'Serving the application locally...'
+            bat 'npm run serve'
         }
       }
     }
