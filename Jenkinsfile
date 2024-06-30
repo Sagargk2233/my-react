@@ -37,7 +37,8 @@ pipeline {
         echo 'Deploying to Local...'
         script {
             echo 'Serving the application locally...'
-            powershell 'Start-Process powershell -ArgumentList "npm run serve"'
+            bat 'npm run serve'
+            sleep(time: 2, unit: 'MINUTES')
         }
       }
     }
@@ -45,7 +46,7 @@ pipeline {
       steps {
         echo 'Opening the application in Chrome...'
         script {
-          powershell 'Start-Process chrome http://localhost:8070'
+          bat 'start chrome http://localhost:8070'
         }
       }
     }
