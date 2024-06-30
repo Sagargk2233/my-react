@@ -37,7 +37,7 @@ pipeline {
         echo 'Deploying to Local...'
         script {
             echo 'Serving the application locally...'
-            bat 'npm run serve'
+            bat 'start cmd.exe /c npm run serve'
         }
       }
     }
