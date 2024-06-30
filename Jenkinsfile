@@ -37,8 +37,24 @@ pipeline {
         echo 'Deploying to Local...'
         script {
             echo 'Serving the application locally...'
-            bat 'npm run serve'
-            sleep(time: 2, unit: 'MINUTES')
+            powershell '''
+          # Start the server in the background
+          Start-Process -FilePath "cmd.exe" -ArgumentList "/c npm run serve" -PassThru | Select-Object -ExpandProperty Id > server.pid
+          '''
+          sleep(time: 2, unit: 'MINUTES')
+        }
+      }
+    }
+     stage('Terminate Server') {
+      steps {
+        echo 'Terminating the server...'
+        script {
+          powershell '''
+          # Read the server PID and kill the process
+          $pid = Get-Content server.pid
+          Stop-Process -Id $pid -Force
+          Remove-Item server.pid
+          '''
         }
       }
     }
